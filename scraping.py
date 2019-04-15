@@ -1,5 +1,6 @@
 # import libraries
 from urllib.request import urlopen
+import bs4
 from bs4 import BeautifulSoup
 
 # specify the url
@@ -17,22 +18,26 @@ heading_box.pop()
 heading_box.pop()
 heading_box.pop()
 
-# print(heading_box)
-# print(len(heading_box))
-# print(heading_box[0])
+# multidemensional array of answers
 multi_array = []
 
+# array of h2 id's where errors occured, thus potentially false data in multi_array
+error_arr = []
+
 for i in range(len(heading_box)):
-    print(f'----------{i}---------------')
+    # print(f'----------{i}---------------')
     html_section = heading_box[i]
 
     id_name = heading_box[i].get('id')
 
     starting_point = soup.find('h2',id=id_name)
-    print(f'starting point {starting_point}')
+    # print(f'starting point {starting_point}')
     
     if starting_point.next_sibling == None:
-        break
+        error_arr.append(id_name)
+        # print(f'-----error {id_name} ------ {error_arr}')
+        continue
+    
     next_sib = starting_point.next_sibling.next_sibling
     next_sib_child = ""
 
@@ -44,11 +49,23 @@ for i in range(len(heading_box)):
     
     while next_sib_child != soup.find('a', href = '#top'):
         array.append(next_sib)
+        if next_sib.next_sibling == None:
+            error_arr.append(id_name)
+            # print(f'-----error {id_name} ------ {error_arr}')
+            break
+        if next_sib.next_sibling.next_sibling == None:
+            error_arr.append(id_name)
+            # print(f'-----error {id_name} ------ {error_arr}')
+            break
+        if type(next_sib) is not bs4.element.NavigableString:
+            error_arr.append(id_name)
+            # print(f'-----error {id_name} ------ {error_arr}')
+            break
         next_sib = next_sib.next_sibling.next_sibling
         if len(next_sib.contents) > 0:  
             
             next_sib_child = next_sib.contents[0]
-
     # print(array)
     multi_array.append(array)
-# print(multi_array)
+print(f"full array: {multi_array}")
+print(f"error_array: {error_arr}")
