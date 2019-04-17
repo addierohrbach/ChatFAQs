@@ -1,6 +1,4 @@
 # import libraries
-from urllib.request import urlopen
-import bs4
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 import codecs
@@ -79,7 +77,7 @@ def update_xlsx(src):
 
     # Load questions into the first column
     for x in range(len(heading_box)):
-        ws['A' + x] = heading_box[x - 1]
+        ws['A', x + 1] = heading_box[x]
 
     # Save workbook
     wb.save(src)
