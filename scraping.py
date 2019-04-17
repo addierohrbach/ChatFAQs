@@ -10,19 +10,6 @@ file = codecs.open("data/original_html.html", "r")
 # parse the html using beautiful soup
 soup = BeautifulSoup(file.read(), 'html.parser')
 
-# specify the url
-# website = 'https://myc.nm.org/MyChart/default.asp?mode=stdfile&option=faq'
-
-# query the website and return the html
-# page = urlopen(website)
-
-# parse the html using beautiful soup
-fixed = codecs.open("fixed.html",'r')
-soup = BeautifulSoup(fixed, 'html.parser')
-# soup = BeautifulSoup(page, 'lxml')
-print(soup.prettify())
->>>>>>> 845a3e0d46be7be4b07b48fed66f6910b76fb8d7
-
 heading_box = soup.find_all('h2')
 # Deletes the last three elements in the array which are not relevant questions
 heading_box.pop()
