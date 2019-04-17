@@ -3,15 +3,12 @@ from urllib.request import urlopen
 import bs4
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
+import codecs
 
-# specify the url
-website = 'https://myc.nm.org/MyChart/default.asp?mode=stdfile&option=faq#RE_enhancements'
-
-# query the website and return the html
-page = urlopen(website)
+file = codecs.open("data/original_html.html", "r")
 
 # parse the html using beautiful soup
-soup = BeautifulSoup(page, 'html.parser')
+soup = BeautifulSoup(file.read(), 'html.parser')
 
 heading_box = soup.find_all('h2')
 # Deletes the last three elements in the array which are not relevant questions
