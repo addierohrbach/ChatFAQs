@@ -5,12 +5,11 @@ from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 import codecs
 
-<<<<<<< HEAD
 file = codecs.open("data/original_html.html", "r")
 
 # parse the html using beautiful soup
 soup = BeautifulSoup(file.read(), 'html.parser')
-=======
+
 # specify the url
 # website = 'https://myc.nm.org/MyChart/default.asp?mode=stdfile&option=faq'
 
