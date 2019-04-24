@@ -4,7 +4,8 @@ from openpyxl import load_workbook
 import codecs
 
 
-file = codecs.open("data/original_html.html", "r")
+# file = codecs.open("data/original_html.html", "r")
+file = open("data/original_html.html", encoding="utf8")
 
 # parse the html using beautiful soup
 soup = BeautifulSoup(file.read(), 'html.parser')
