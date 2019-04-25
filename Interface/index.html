@@ -34,16 +34,16 @@
 
 <script>
     function togglediv(id) {
-    var div = document.getElementById(id);
-    div.style.display = div.style.display == "none" ? "block" : "block";}    
-</script>
-          
-<script>
-var input = document.getElementById("search");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("searchbutton").click();}});
+      var div = document.getElementById(id);
+      div.style.display = div.style.display === "none" ? "block" : "block";
+    }
+
+    var input = document.getElementById("search");
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+       event.preventDefault();
+       document.getElementById("searchbutton").click();}
+    });
 </script>
 
 <style>

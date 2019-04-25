@@ -1,8 +1,6 @@
 # import libraries
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
-import codecs
-
 
 # file = codecs.open("data/original_html.html", "r")
 file = open("data/original_html.html", encoding="utf8")
@@ -11,78 +9,40 @@ file = open("data/original_html.html", encoding="utf8")
 soup = BeautifulSoup(file.read(), 'html.parser')
 
 heading_box = soup.find_all('h2')
-# Deletes the last three elements in the array which are not relevant questions
+# Delete the last three elements in the array which are not relevant questions
 heading_box.pop()
 heading_box.pop()
 heading_box.pop()
 
-# multidemensional array of answers
-multi_array = []
-
-# array of h2 id's where errors occured, thus potentially false data in multi_array
-error_arr = []
+answers = []
 
 for i in range(len(heading_box)):
-    print(f'----------{i}---------------')
     html_section = heading_box[i]
-
     id_name = heading_box[i].get('id')
 
-    starting_point = soup.find('h2',id=id_name)
-    print(f'starting point {starting_point}')
-    print(f'starting point.next_sib = {starting_point.next_sibling}')
+    starting_point = soup.find('h2', id=id_name)
 
-    # if there is no next sibling for some reason, move on to the next question
-    # if starting_point.next_sibling == None:
-    #     error_arr.append(id_name)
-    #     # print(f'-----error {id_name} ------ {error_arr}')
-    #     continue
+    sib = starting_point.next_sibling
+    answer = []
 
-    next_sib = starting_point.next_sibling.next_sibling
-    next_sib_child = ""
+    while sib.name != 'h2':
+        answer.append(sib)
+        sib = sib.next_sibling
 
-    # print(f'------check {id_name}--------')
-    if len(next_sib.contents) > 0:
-        next_sib_child = next_sib.contents[0]
-    array = []
+    answers.append(answer)
 
-    while next_sib_child != soup.find('a', href = '#top'):
-        array.append(next_sib)
-        # if next_sib.next_sibling == None:
-        #     error_arr.append(id_name)
-        #     # print(f'-----error {id_name} ------ {error_arr}')
-        #     break
-        # if next_sib.next_sibling.next_sibling == None:
-        #     error_arr.append(id_name)
-        #     # print(f'-----error {id_name} ------ {error_arr}')
-        #     break
-        # if type(next_sib) is not bs4.element.NavigableString:
-        #     error_arr.append(id_name)
-        #     # print(f'-----error {id_name} ------ {error_arr}')
-        #     break
-        next_sib = next_sib.next_sibling.next_sibling
-        if len(next_sib.contents) > 0:
-
-            next_sib_child = next_sib.contents[0]
-    print(array)
-    multi_array.append(array)
-
-print(f"full array: {multi_array}")
-print(f"error_array: {error_arr}")
-
-# Input all of the data into an excel spreadsheet
-def update_xlsx(src):
-    # Open spreadsheet for reading
-    wb = load_workbook(filename=src)
-    # Get the current active sheet
-    ws = wb.get_active_sheet()
-
-    # Load questions into the first column
-    for x in range(len(heading_box)):
-        ws['A', x + 1] = heading_box[x]
-
-    # Save workbook
-    wb.save(src)
-
-
-update_xlsx('data/faq_spreadsheet.xlsx')
+# # Open spreadsheet for reading
+# wb = load_workbook(filename='data/faq_spreadsheet.xlsx')
+# # Get the current active sheet
+# ws = wb.get_active_sheet()
+#
+# # Load questions into the first column
+# for i in range(len(heading_box)):
+#     ws['A', i + 1] = heading_box[i]
+#
+# # Load answers into the second column
+# for j in range(len(answers)):
+#     ws['B', j + 1] = answers[j]
+#
+# # Save workbook
+# wb.save('data/faq_spreadsheet.xlsx')
