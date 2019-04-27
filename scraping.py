@@ -8,17 +8,17 @@ file = open("data/original_html.html", encoding="utf8")
 # parse the html using beautiful soup
 soup = BeautifulSoup(file.read(), 'html.parser')
 
-heading_box = soup.find_all('h2')
+questions = soup.find_all('h2')
 # Delete the last three elements in the array which are not relevant questions
-heading_box.pop()
-heading_box.pop()
-heading_box.pop()
+questions.pop()
+# heading_box.pop()
+# heading_box.pop()
 
 answers = []
 
-for i in range(len(heading_box)):
-    html_section = heading_box[i]
-    id_name = heading_box[i].get('id')
+for i in range(len(questions)):
+    html_section = questions[i]
+    id_name = questions[i].get('id')
 
     starting_point = soup.find('h2', id=id_name)
 
@@ -30,6 +30,13 @@ for i in range(len(heading_box)):
         sib = sib.next_sibling
 
     answers.append(answer)
+
+# print(f'{questions}')
+
+#----debugging-----
+# print(f'answers: {answers}')
+# print(f'answers len: {len(answers)}')
+# print(f'questions len: {len(heading_box)}')
 
 # # Open spreadsheet for reading
 # wb = load_workbook(filename='data/faq_spreadsheet.xlsx')
