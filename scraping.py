@@ -9,10 +9,9 @@ file = open("data/original_html.html", encoding="utf8")
 soup = BeautifulSoup(file.read(), 'html.parser')
 
 questions = soup.find_all('h2')
-# Delete the last three elements in the array which are not relevant questions
+
+# Delete the last element in the array which are not relevant questions
 questions.pop()
-# heading_box.pop()
-# heading_box.pop()
 
 answers = []
 
