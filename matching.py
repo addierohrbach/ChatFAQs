@@ -5,8 +5,16 @@ from bs4 import BeautifulSoup
 # input_variable = "I keep forgetting my password. Is there an easier way to sign in?"
 input_variable = "".join([str(x) for x in scraping.questions[0].contents])
 
+
+""" Does:
+        tokenizes the input
+        stems the tokens
+        separates stop words from stems
+    Returns:
+        stems: array of appropriate stems
+        stops: array of stop words
+"""
 def tok_stem(user_question):
-    
     # loads the spacy model
     # need to run 'python -m -spacy download en_core_web_sm' in command line first
     nlp = spacy.load("en_core_web_sm")
@@ -14,38 +22,46 @@ def tok_stem(user_question):
     # add new line character to stop words
     nlp.vocab["\n    "].is_stop = True
     
+    # create array of tokens
     doc = nlp(user_question)
 
-    tokens = []
-    stop = []
+    stems = []
+    stops = []
 
+    # for each token, separate usable stems from stop words
     for token in doc:
         if (token.is_stop == False) and (not token.is_punct):
-            tokens.append(token.lemma_)
+            stems.append(token.lemma_)
         else:
-            stop.append(token.lemma_)
+            stops.append(token.lemma_)
 
-    return tokens, stop
+    return stems, stops
 
+""" Does:
+        applies tok_stem to each question
+    Returns:
+        q_tok_stems: multi-dim array of the appropriate stems for each question
+        q_tok_stems_stops: multi-dim array of the stop words for each question
+"""
 def tok_stem_qs(questions):
     
     q_tok_stems = []
-    q_tok_stems_stops = []
+    q_tok_stops = []
 
     for q in questions:
         q_input = "".join([str(x) for x in q.contents])
-        print(f'-----{q_input}----')
-        tokens, stops = tok_stem(q_input)
-        print(f'tokens: {tokens}')
-        q_tok_stems.append(tokens)
-        q_tok_stems_stops.append(stops)
+        # print(f'-----{q_input}----')
+        stems, stops = tok_stem(q_input)
+        # print(f'tokens: {stems}')
+        q_tok_stems.append(stems)
+        q_tok_stops.append(stops)
 
-    return q_tok_stems, q_tok_stems_stops
+    return q_tok_stems, q_tok_stops
 
-return_var1, return_var2 = tok_stem(input_variable)
+stems, stops = tok_stem(input_variable)
 print(f'input_variable: {input_variable}')
-print(f'tokens: {return_var1}')
-print(f'stops: {return_var2}')
-
-stems, stops = tok_stem_qs(scraping.questions)
 print(f'stems: {stems}')
+print(f'stops: {stops}')
+
+q_stems, q_stops = tok_stem_qs(scraping.questions)
+print(f'stems: {q_stems}')
