@@ -2,8 +2,12 @@ import scraping
 import spacy
 from bs4 import BeautifulSoup
 
+# for matching function
+from spacy.pipeline import TextCategorizer
+
 # input_variable = "I keep forgetting my password. Is there an easier way to sign in?"
 input_variable = "".join([str(x) for x in scraping.questions[0].contents])
+
 
 
 """ Does:
@@ -35,7 +39,7 @@ def tok_stem(user_question):
         else:
             stops.append(token.lemma_)
 
-    return stems, stops
+    return stems, stops, nlp
 
 """ Does:
         applies tok_stem to each question
@@ -51,17 +55,34 @@ def tok_stem_qs(questions):
     for q in questions:
         q_input = "".join([str(x) for x in q.contents])
         # print(f'-----{q_input}----')
-        stems, stops = tok_stem(q_input)
+        stems, stops, nlp = tok_stem(q_input)
         # print(f'tokens: {stems}')
         q_tok_stems.append(stems)
         q_tok_stops.append(stops)
 
     return q_tok_stems, q_tok_stops
 
-stems, stops = tok_stem(input_variable)
-print(f'input_variable: {input_variable}')
-print(f'stems: {stems}')
-print(f'stops: {stops}')
+def matching():
+    stems, stops, nlp = tok_stem(input_variable)
+    q_stems, q_stops = tok_stem_qs(scraping.questions)
+    
+    # initalize a TextCategorizer object
+    textcat = TextCategorizer(nlp.vocab)
+    
+    # begin training the object
+    nlp.pipeline.append(textcat)
+    optimizer = textcat.begin_training(pipeline = nlp.pipeline)
 
-q_stems, q_stops = tok_stem_qs(scraping.questions)
-print(f'stems: {q_stems}')
+
+    raise NotImplementedError()
+
+
+# print(f'{scraping.questions[60]}')
+# stems, stops, nlp = tok_stem(input_variable)
+# print(f'input_variable: {input_variable}')
+# print(f'stems: {stems}')
+# print(f'stops: {stops}')
+print(f'{scraping.questions[86]}')
+
+# q_stems, q_stops = tok_stem_qs(scraping.questions)
+# print(f'stems: {q_stems}')
