@@ -1,6 +1,8 @@
 # import libraries
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
+import json
+import csv
 
 # file = codecs.open("data/original_html.html", "r")
 file = open("data/original_html.html", encoding="utf8")
@@ -14,6 +16,10 @@ questions = soup.find_all('h2')
 questions.pop()
 
 answers = []
+
+# def fixqs(faq_strings):
+#     for i in range(0,len(faq_string):
+#         "".join([str(x) for x in faq_string.contents])
 
 for i in range(len(questions)):
     html_section = questions[i]
@@ -29,6 +35,31 @@ for i in range(len(questions)):
         sib = sib.next_sibling
 
     answers.append(answer)
+
+# write answers and questions into csv file, to prevent running scraping every time we run
+with open('data/questions.json', 'w') as f:
+    json.dump(str(questions), f)
+
+with open('data/answers.json', 'w') as f:
+    json.dump(str(answers), f)
+
+# with open('data/questions.csv', 'w') as write_file:
+#     writer = csv.writer(write_file)
+#     writer.writerow([questions])
+wtr = csv.writer(open('data/questions.csv', 'w'), delimiter = '\f')
+for x in questions: wtr.writerow([x])
+
+# write_file.close()
+
+with open('data/answers.csv', 'w') as write_file:
+    writer = csv.writer(write_file)
+    writer.writerow([answers])
+
+write_file.close()
+
+print(f'questions: {questions}')
+
+
 
 # print(f'{questions}')
 

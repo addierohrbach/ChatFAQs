@@ -1,0 +1,150 @@
+"<h2 id=""RE_enhancements"">What new enhancements are available in NM MyChart (web)?</h2>"
+"<h2 id=""RE_enhancementsapp"">What new enhancements are available in the MyNM
+    app?</h2>"
+"<h2 id=""EQ_what"">What is MyChart?</h2>"
+"<h2 id=""EQ_urgent"">Should I use
+    MyChart in an urgent situation?</h2>"
+"<h2 id=""EQ_fee"">Is there a fee to use
+    MyChart or the MyNM app?</h2>"
+"<h2 id=""EQ_sign"">How do I sign up for NM MyChart?</h2>"
+"<h2 id=""EQ_access"">What is an Access Code?</h2>"
+"<h2 id=""EQ_expired"">What should I do if my
+    Access Code is disabled or does not work?</h2>"
+"<h2 id=""EQ_username"">Is my Access Code my username? </h2>"
+"<h2 id=""EQ_app"">What if I've never had an appointment with a Northwestern
+    Medicine doctor, but I am interested in signing up for MyChart? </h2>"
+"<h2 id=""EQ_ques"">
+    Who do I contact if I have further questions?</h2>"
+"<h2 id=""NM_diffnm"">What is the difference between MyChart and the MyNM app?</h2>"
+"<h2 id=""NM_already"">I already have the MyChart app on my phone -
+    can I continue to use the MyChart app instead of MyNM?</h2>"
+"<h2 id=""NM_get"">How do I get the MyNM app?</h2>"
+"<h2 id=""NM_pass"">What password do I use to log into the MyNM app?</h2>"
+"<h2 id=""NM_nmapp"">Will
+    information from the NM MyChart app show up when I log into the MyNM app?</h2>"
+"<h2 id=""MR_test"">When can I see my test results in MyChart?</h2>"
+"<h2 id=""MR_share"">Why are certain test results not
+    shared electronically via MyChart?</h2>"
+"<h2 id=""MR_upcomingtests"">Why can I see upcoming tests that haven't been
+    scheduled yet?</h2>"
+"<h2 id=""MR_wrong"">Why is some of my health information on MyChart incorrect or missing?</h2>"
+"<h2 id=""MR_update"">When I update my
+    medications and allergies, does that automatically go onto my medical record?</h2>"
+"<h2 id=""MR_message"">How do I send a message to my
+    doctor?</h2>"
+"<h2 id=""MR_reply"">If I send a message to my
+    doctor or nurse, when can I expect a reply?</h2>"
+"<h2 id=""MR_phyList"">Why can't I see my doctor in the
+    list of available doctors to message?</h2>"
+"<h2 id=""MR_phylistRemove"">Can I have a
+    doctor removed from my list of doctors to message?</h2>"
+"<h2 id=""MR_msgattach"">
+    Can I send an image or video attachment via message to my physician?</h2>"
+"<h2 id=""MR_visibility"">I use another patient portal to see information from visits for one of my
+    physicians. Will that information be available in the upgraded version?</h2>"
+"<h2 id=""MR_mydoc"">What is the My Documents activity and how is it used?</h2>"
+"<h2 id=""MR_fluvac"">I have an alert saying that I need to complete my annual flu vaccine - how do I inform my
+    clinician's office that I have already completed this?</h2>"
+"<h2 id=""MF_ques"">Can I ask questions regarding a family member from my MyChart account?</h2>"
+"<h2 id=""MF_share"">Can my spouse and I
+    share one MyChart account?</h2>"
+"<h2 id=""MF_view"">Can I view a family
+    member's health record in MyChart?</h2>"
+"<h2 id=""MF_proxy"">What will I have access to as a Proxy?</h2>"
+"<h2 id=""MF_transition"">
+    If I use the MyNM app, will my existing proxy relationships from the MyChart app still work?</h2>"
+"<h2 id=""MF_remove"">Can I remove someone who current has proxy access to my account?</h2>"
+"<h2 id=""MF_message"">If someone
+    has proxy access to my account, will they be able to see messages I send to my doctor or nurse?</h2>"
+"<h2 id=""BL_what"">What is MyChart Bill Pay?</h2>"
+"<h2 id=""BL_signup"">How do I sign up for MyChart Bill Pay?</h2>"
+"<h2 id=""BL_sum"">How has the Billing Account Summary
+    page changed?</h2>"
+"<h2 id=""BL_avail"">What bills are available to me in MyChart?</h2>"
+"<h2 id=""BL_visibility"">Why can't I see any of my old bills in the
+    upgraded version of NM MyChart?</h2>"
+"<h2 id=""BL_apply"">Can I apply my payment to specific statements?</h2>"
+"<h2 id=""BL_payplan"">Can I setup a payment plan in MyChart?</h2>"
+"<h2 id=""BL_view"">Who can view MyChart and make payments on accounts?</h2>"
+"<h2 id=""BL_ccinfo"">How is my credit card information stored?</h2>"
+"<h2 id=""BL_new"">How will I know when a new statement/bill is
+    available?</h2>"
+"<h2 id=""BL_paperless"">Can I sign up for paperless billing? </h2>"
+"<h2 id=""BL_questions"">Who can I contact with
+    questions about my bill?</h2>"
+"<h2 id=""BL_options"">Are there other ways
+    to pay my bill? </h2>"
+"<h2 id=""BL_precheck"">What is Pre Check-In and how do I use it? Is it mandatory?</h2>"
+"<h2 id=""MA_reason"">What if the Reason for Visit I need is not available for
+    scheduling?</h2>"
+"<h2 id=""MA_options"">Why isn't my doctor listed in my options for
+    scheduling?</h2>"
+"<h2 id=""MA_request"">Can I still request an appointment online if my doctor or
+    Reason for Visit is not available for Direct Scheduling?</h2>"
+"<h2 id=""MA_avail"">What if the time or day(s) I need are not available?</h2>"
+"<h2 id=""MA_location"">My doctor practices in two locations. Will I have the option to schedule with
+    him/her in either location?</h2>"
+"<h2 id=""MA_loc"">When
+    scheduling an appointment, do I have to choose my scheduling location first? What if I want to schedule based on
+    provider?</h2>"
+"<h2 id=""MA_schedule"">Where can I view a list of my scheduled appointments in
+    MyChart?</h2>"
+"<h2 id=""MA_cancel"">Can I cancel an appointment using MyChart?</h2>"
+"<h2 id=""MA_confirm"">What happens when I confirm an appointment in MyChart?</h2>"
+"<h2 id=""O_Evisit"">What is an eVisit?</h2>"
+"<h2 id=""O_Reqevisit"">How do I request an eVisit?</h2>"
+"<h2 id=""O_Costevisit"">How much does an eVisit cost? Does my insurance cover this service?</h2>"
+"<h2 id=""O_Rxevisit"">Can I get a prescription during an eVisit?</h2>"
+"<h2 id=""O_cancelevisit"">Can I cancel my eVisit after the request has been
+    submitted?</h2>"
+"<h2 id=""O_HT1"">How do I link my account to other organizations via Happy Together?</h2>"
+"<h2 id=""O_HT2"">What additional actions can I take after linking my account to
+    another healthcare organization?</h2>"
+"<h2 id=""O_HT3"">Can I access this information
+    on both the mobile app and on the website?</h2>"
+"<h2 id=""O_HT4"">Can I stop seeing information from an organization I’ve
+    linked?</h2>"
+"<h2 id=""O_HT5"">I can see other people’s information (e.g. my child) at a
+    different organization. When my accounts are linked, can I also see that information here?</h2>"
+"<h2 id=""O_HT6"">How does MyChart know where I have been seen before, or where
+    I have other health data?</h2>"
+"<h2 id=""O_HT7"">How is my information protected?</h2>"
+"<h2 id=""O_HT8"">Why aren’t all of the organizations where I have been seen
+    available to link?</h2>"
+"<h2 id=""O_HT9"">What if I do not recognize an organization that appears on my
+    list of accounts?</h2>"
+"<h2 id=""O_HT10"">What do I do if I believe there is a mistake in the information
+    I see?</h2>"
+"<h2 id=""O_HT11"">What do the notification bubbles mean in the Other Providers
+    section of the home page?</h2>"
+"<h2 id=""O_HT12"">Why can’t I
+    see certain information from other organizations?</h2>"
+"<h2 id=""O_HT13"">Why can’t I message a doctor from another organization?</h2>"
+"<h2 id=""O_SE1"">What is Share Everywhere?</h2>"
+"<h2 id=""O_SE2"">How do I generate a Share Everywhere code?</h2>"
+"<h2 id=""O_SE3"">Is this functionality available in the mobile app</h2>"
+"<h2 id=""O_SE4"">What can the person viewing my record via Share Everywhere
+    see? Can they communicate with my NM physician?</h2>"
+"<h2 id=""O_ACP1"">What is the Advance Care Planning (ACP) activity?</h2>"
+"<h2 id=""O_ACP2"">What type of documents can I
+    submit?</h2>"
+"<h2 id=""O_ACP3"">What happens after I submit a document?</h2>"
+"<h2 id=""O_ACP4"">What
+    questionnaires are available? How are they used?</h2>"
+"<h2 id=""AE_pass"">I forgot my username or password. How can I retrieve it? </h2>"
+"<h2 id=""AE_easy"">I keep forgetting my password. Is there an easier way to
+    sign in?</h2>"
+"<h2 id=""AE_info"">Where can I update my personal information (e.g. home address,
+    e-mail, or change my password)?</h2>"
+"<h2 id=""AE_notific"">Where can I edit my notification preferences?</h2>"
+"<h2 id=""TQ_sec"">Is MyChart secure?</h2>"
+"<h2 id=""TQ_priv"">What is your
+    Privacy Policy?</h2>"
+"<h2 id=""TQ_time"">Why does MyChart log me out after a period of time?</h2>"
+"<h2 id=""TQ_require"">What computer tools or applications do I need in order to use MyChart?</h2>"
+"<h2 id=""TQ_notif"">Why am I not receiving notifications when there are new
+    messages or lab results sent to my account?</h2>"
+"<h2 id=""TQ_domain"">How do I add ""NM.org"" as a trusted email domain?</h2>"
+"<h2 id=""TQ_mobileDev"">Can I access MyChart from my mobile phone or
+    iPad/tablet?</h2>"
+"<h2 id=""TQ_avail"">Is MyChart always available?</h2>"
