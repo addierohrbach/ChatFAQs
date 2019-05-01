@@ -52,7 +52,10 @@ def fixqs(questions):
 #create a list of clean, html-free questions
 qs=scraping.questions
 qs=[fixqs(q) for q in qs]
-print('fixed', qs)
+# print('fixed', qs)
+
+# ans = scraping.answers
+# ans = [fix]
 
 #class names corresponding to index of question
 classes =  list(range(0, len(scraping.questions)))
@@ -66,10 +69,26 @@ pipe.fit(qs,classes)
 
 
 #below used to test
-print(qs[77])
+print(f'77: {qs[77]}')
+print(f'85: {qs[85]}')
+print(f'86: {qs[86]}')
+print(f'31: {qs[31]}')
+print(f'20: {qs[20]}')
 
-predicted = pipe.predict(["forgetting my password. Is there an way to sign in?"])
-print(predicted)
+
+# should return 86
+# predicted = pipe.predict(["I forgot my password. Is there an way to sign in?"])
+# should return 31
+# predicted = pipe.predict(["How do I check family's records"])
+predicted = pipe.predict(["How do I check family's records"])
+
+predicted = int(predicted)
+question = scraping.questions[predicted]
+answers = scraping.answers[predicted]
+
+print(f'index: {predicted}')
+print(f'matched question: {question}')
+print(f'answers: {answers}')
 
 #unused functions
 '''
