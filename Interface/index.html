@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="s130">
-      <form>
+      <form method="POST" action="">
         <div class="inner-form">
           <div class="input-field first-wrap">
             <div class="svg-wrapper">
@@ -17,6 +17,17 @@
               </svg>
             </div>
             <input id="search" type="text" class="info" placeholder="What are you looking for?" />
+            {{ form.hidden_tag() }}
+            {% for field in form %}
+              <div class="field">
+                  {% if field.errors %}
+                      {% for error in field.errors %}
+                          <div class="notification error">{{ error }}</div>
+                      {% endfor %}
+                  {% endif %}
+                  {{ field(placeholder=field.label.text) }}
+              </div>
+            {% endfor %}
           </div>
           <div class="input-field second-wrap">
             <button id="searchbutton" class="btn-search" type="button" onclick="togglediv('item')">SEARCH</button>
@@ -24,7 +35,7 @@
         </div>
         <span class="info">ex. When is the check-in time? </span>
          
-        <div id="item" class="answer" style="display: none;">orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+        <div id="item" class="answer" style="display: none;">{{ answer }}</div>
           
       </form>
     </div>
