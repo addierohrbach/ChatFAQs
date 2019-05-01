@@ -47,20 +47,20 @@ print('-------------------------')
 #     for j in range(0, len(answers[i])):
 #         if answers[i][j] == '\n':
 #             print(f'answers[{i}][{j}]: {answers[i][j]}')
-new_answers = []
-for i in range(0, len(answers)):
-    ans = ''
-    for j in range(0,len(answers[i])):
-        if answers[i][j] == '\n':
-            print(f'hit')
-            continue
-        else:
-            print(f'answers[{i}][{j}] = {str(answers[i][j])}')
-            ans = ans.join(str(answers[i][j]))
-            print(f'ans: {ans}')
-    new_answers.append(ans)
+# new_answers = []
+# for i in range(0, len(answers)):
+#     ans = ''
+#     for j in range(0,len(answers[i])):
+#         if answers[i][j] == '\n':
+#             print(f'hit')
+#             continue
+#         else:
+#             print(f'answers[{i}][{j}] = {str(answers[i][j])}')
+#             ans = ans.join(str(answers[i][j]))
+#             print(f'ans: {ans}')
+#     new_answers.append(ans)
 
-print(new_answers)
+# print(new_answers)
 
 # make multidimensional array of answers single dimension
 
