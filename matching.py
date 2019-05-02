@@ -70,7 +70,7 @@ print(qs[77])
 
 def predict(question):
     predicted = pipe.predict([question])
-    return scraping.answers[int(predicted)]
+    return qs[(int(predicted))],scraping.answers[int(predicted)]
 
 #unused functions
 '''

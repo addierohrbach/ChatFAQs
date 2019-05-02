@@ -13,9 +13,14 @@ app.secret_key = 'aoijad.asdofij230f-ds'
 def view_answer():
     form = searchform.SearchForm()
     if form.validate_on_submit():
+        print(f'-------------User Input:-------------')
         print(form.question.data)
-        answer = matching.predict(form.question.data)
+        matched_q, answer = matching.predict(form.question.data)
+        print(f'-------------Matched Question:-------------')
+        print(matched_q)
+        print(f'-------------Matched Answer:-------------')
         print(answer)
+        print(f'-------------End of Matched Answer:-------------')
         return render_template("question.html", form=form, answer=answer)
     return render_template("question.html", form=form, answer="answer")
 
