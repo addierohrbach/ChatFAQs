@@ -1,4 +1,8 @@
-<form method="POST" action="" class="form">
+<!doctype html>
+<title>ChatFAQs</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+<div class="page">
+  <form method="POST" action="" class="form">
     {{ form.hidden_tag() }}
     {% for field in form %}
         <div class="field">
@@ -16,4 +20,5 @@
             <div>{{ line }}</div>
         {% endfor %}}
     </div>
-</form>
+  </form>
+</div>
