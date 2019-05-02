@@ -21,8 +21,8 @@ def view_answer():
         print(f'-------------Matched Answer:-------------')
         print(answer)
         print(f'-------------End of Matched Answer:-------------')
-        return render_template("question.html", form=form, answer=answer)
-    return render_template("question.html", form=form, answer="answer")
+        return render_template("layout.html", form=form, answer=answer)
+    return render_template("layout.html", form=form, answer="answer")
 
 
 if __name__ == "__main__":
