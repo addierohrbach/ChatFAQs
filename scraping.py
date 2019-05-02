@@ -28,6 +28,8 @@ for i in range(len(questions)):
         answer.append(sib)
         sib = sib.next_sibling
 
+    answer.pop()
+    answer.pop()
     answers.append(answer)
 
 # print(f'{questions}')
