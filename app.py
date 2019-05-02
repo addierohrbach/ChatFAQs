@@ -16,8 +16,8 @@ def view_answer():
         print(form.question.data)
         answer = matching.predict(form.question.data)
         print(answer)
-        return render_template("question.html", form=form, answer=answer)
-    return render_template("question.html", form=form, answer="answer")
+        return render_template("layout.html", form=form, answer=answer)
+    return render_template("layout.html", form=form, answer="answer")
 
 
 if __name__ == "__main__":
