@@ -22,7 +22,7 @@ def view_answer():
         print(answer)
         print(f'-------------End of Matched Answer:-------------')
         return render_template("layout.html", form=form, answer=answer, matched_q=matched_q)
-    return render_template("layout.html", form=form, answer="answer", matched_q="question")
+    return render_template("layout.html", form=form, answer="", matched_q="")
 
 
 if __name__ == "__main__":
