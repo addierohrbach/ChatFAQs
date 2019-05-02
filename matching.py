@@ -68,8 +68,9 @@ pipe.fit(qs,classes)
 #below used to test
 print(qs[77])
 
-predicted = pipe.predict(["forgetting my password. Is there an way to sign in?"])
-print(predicted)
+def predict(question):
+    predicted = pipe.predict([question])
+    return scraping.answers[int(predicted)]
 
 #unused functions
 '''
