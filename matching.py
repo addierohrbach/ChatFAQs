@@ -10,7 +10,7 @@ classifier = LogisticRegression()
 
 # loads the spacy model
 # need to run 'python -m -spacy download en_core_web_sm' in command line first
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_md")
 
 # add new line character to stop words
 nlp.vocab["\n    "].is_stop = True
@@ -52,7 +52,6 @@ def fixqs(questions):
 #create a list of clean, html-free questions
 qs=scraping.questions
 qs=[fixqs(q) for q in qs]
-print('fixed', qs)
 
 #class names corresponding to index of question
 classes =  list(range(0, len(scraping.questions)))
@@ -63,10 +62,6 @@ pipe = Pipeline([("cleaner", predictors()),
                  ('vectorizer', count_vector),
                  ('classifier', classifier)])
 pipe.fit(qs,classes)
-
-
-#below used to test
-print(qs[77])
 
 def predict(question):
     predicted = pipe.predict([question])

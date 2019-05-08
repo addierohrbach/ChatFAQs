@@ -1,0 +1,29 @@
+<!doctype html>
+<title>ChatFAQs</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+<div class="page">
+    <form method="POST" action="" class="form">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+        <div class="field">
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="notification error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+            {{ field(placeholder=field.label.text, class_="search") }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="submit">Submit</button>
+        <div id="item" class="answer">
+            {% for sim, question, answer in similar_qs %}
+                <div>Question Matched: {{ question | safe }}</div>
+                <div>Answer:
+                    {% for line in answer %}
+                    <div>{{ line | safe }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
