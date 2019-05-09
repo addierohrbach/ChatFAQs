@@ -24,7 +24,7 @@ for i in range(len(questions)):
     sib = starting_point.next_sibling
     answer = []
 
-    while sib.name != 'h2':
+    while sib.name != 'h2' and sib.name != 'h1':
         answer.append(sib)
         sib = sib.next_sibling
 
