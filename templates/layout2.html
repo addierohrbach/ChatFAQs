@@ -1,5 +1,6 @@
 <!doctype html>
 <title>ChatFAQs</title>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
 <div class="page">
     <form method="POST" action="" class="form">
@@ -17,12 +18,13 @@
         <button type="submit" class="submit">Submit</button>
         <div id="item" class="answer">
             {% for sim, question, answer in similar_qs %}
-                <div>Question Matched: {{ question | safe }}</div>
-                <div>Answer:
+                <div>{{ question | safe }}</div>
+                <div>
                     {% for line in answer %}
                     <div>{{ line | safe }}</div>
                     {% endfor %}
                 </div>
+                <hr>
             {% endfor %}
         </div>
     </form>

@@ -1,3 +1,6 @@
+
+/* ------------ FORM STYLING -------------- */
+
 .form {
     margin: 50px;
     text-align: center;
@@ -21,4 +24,35 @@
 
 .submit {
     font-size: 20px;
+}
+
+/* -------------- GENERAL STYLING ---------------- */
+
+body {
+}
+
+html {
+    font-family: 'Source Sans Pro', Calibri, Arial, sans-serif;
+    font-size: 13pt;
+}
+
+h2 {
+    color: hsl(250.3, 31.4%, 40%);
+    display: block;
+    font-weight: normal,
+    padding: 0.75rem 0 0.5rem;
+    width: 100%;
+}
+
+ul.bulleted {
+    list-style-type: disc;
+    padding-left: 1rem;
+}
+
+li {
+    text-align: -webkit-match-parent;
+}
+
+p {
+    display: block;
 }
