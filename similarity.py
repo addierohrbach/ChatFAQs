@@ -17,6 +17,7 @@ def predict(question):
         similarity = input_question.similarity(q)
         similar_qs.append([similarity, qs[i], scraping.answers[i]])
     similar_qs.sort(reverse=True)
+
     if similar_qs[0][0] >= 0.9:
         high_similar_qs = []
         for que in similar_qs:
@@ -27,9 +28,16 @@ def predict(question):
     first_sim = similar_qs[0][0]
     last_sim = first_sim - 0.15
     new_similar_qs = []
+
     for quest in similar_qs:
-        if quest[0] <= last_sim:
+        if quest[0] <= last_sim or quest[0] < .5:
             break
+        print(f'{quest[0]}')
+        print(f'{quest}')
         new_similar_qs.append(quest)
+    
+    if len(new_similar_qs) == 0:
+        new_similar_qs.append([0, "<h2>Results not Found.</h2>", ['\n', "<p>Try rewording your question.</p>", '\n']])
+
     return new_similar_qs
 
