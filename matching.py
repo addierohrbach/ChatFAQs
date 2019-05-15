@@ -9,7 +9,7 @@ from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression()
 
 # loads the spacy model
-# need to run 'python -m -spacy download en_core_web_sm' in command line first
+# need to run 'python -m spacy download en_core_web_sm' in command line first
 nlp = spacy.load("en_core_web_md")
 
 # add new line character to stop words
