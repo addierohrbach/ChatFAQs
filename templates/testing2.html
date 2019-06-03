@@ -1,0 +1,59 @@
+<!doctype html>
+
+<head>
+    <title>ChatFAQs</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <!-- <div class="row">
+        <div class="machine-message">
+            <p>Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="user-message">
+            <p>THIS IS FAKE</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="machine-message">
+            <p>Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen.</p>
+        </div>
+    </div> -->
+    <div class="conversation-wrapper">
+        {% for message in messages %}
+        <div class="row">
+            <div class="{{ message[0] }}">
+                {{message[1]}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="input-wrapper">
+        <form action="" method="post" class="message-form">
+            <!-- <input type="text" name="message" placeholder="Enter Message Here."/> -->
+            {{ form.hidden_tag() }}
+            {% for field in form %}
+            <div class="field">
+                {% if field.errors %}
+                {% for error in field.errors %}
+                <div class="notification error">{{ error }}</div>
+                {% endfor %}
+                {% endif %}
+                {{ field(placeholder=placeholder) }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="submit">Submit</button>
+
+        </form>
+    </div>
+
+
+</body>

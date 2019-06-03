@@ -41,3 +41,6 @@ def predict(question):
 
     return new_similar_qs
 
+# print(scraping.answers[81])
+# print(scraping.answers[24])
+# print(scraping.answers[5])
