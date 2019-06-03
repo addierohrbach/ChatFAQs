@@ -35,17 +35,18 @@
 
 .row{
     padding:10px 0px 10px 0px !important;
+    width:99%;
 }
 
 .machine-message{
-    width: 20vw;
-    margin-left:2vw;
+    width: 20%;
+    margin-left:3%;
     background-color: gray;
 }
 
 .user-message{
-    width: 20vw;
-    margin-left: 79vw;
+    width: 20%;
+    margin-left: 79%;
     background-color: lightgray;
 }
 .conversation-wrapper{
