@@ -112,11 +112,18 @@ def sending_message():
         similar_qs = None
         # handle matching
         if len(messages)> 3:
-            similar_qs = similarity.predictusinganswer(81, message_form.message.data)
+            index = None
+            for message in reversed(messages):
+                if message[0] == 'machine-message':
+                    print(message)
+                    index = message[1][3]
+                    break
+                
+            similar_qs = similarity.predictusinganswer(index, message_form.message.data)
         else:
             similar_qs = similarity.predict(message_form.message.data)
         messages.append(["machine-message", similar_qs[0]])
-        
+        ## add another class for button/alt questions "alt-questions"
 
         return redirect(url_for('initialize'))
     return render_template("testing2.html", form=message_form, messages=messages, placehold="Begin writing your message here")
