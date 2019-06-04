@@ -23,7 +23,7 @@ cities = ["Bratislava",
 
 questions = scraping.questions
 
-messages = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."]]
+messages = [["machine-message1" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."]]
 messages2 = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."],
             ["user-message", "How do I log in?"]]
 
@@ -109,9 +109,14 @@ def sending_message():
     if message_form.validate_on_submit():
         # add user message
         messages.append(["user-message", message_form.message.data])
-
+        similar_qs = None
         # handle matching
-        messages.append(["machine-message", "This is the Machine's response to your message."])
+        if len(messages)> 3:
+            similar_qs = similarity.predictusinganswer(81, message_form.message.data)
+        else:
+            similar_qs = similarity.predict(message_form.message.data)
+        messages.append(["machine-message", similar_qs[0]])
+        
 
         return redirect(url_for('initialize'))
     return render_template("testing2.html", form=message_form, messages=messages, placehold="Begin writing your message here")

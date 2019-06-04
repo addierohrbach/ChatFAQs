@@ -67,9 +67,7 @@ def calculate(question):
     for i in range(len(formatted_qs)):
         q = nlp(formatted_qs[i])
         similarity = input_question.similarity(q)
-        similar_qs.append([similarity, qs[i], scraping.answers[i]])
-    
-
+        similar_qs.append([similarity, qs[i], scraping.answers[i], i])  
     return similar_qs
 
 
@@ -90,13 +88,14 @@ def predict(question):
     for quest in similar_qs:
         if quest[0] <= last_sim or quest[0] < .5:
             break
-        print(f'{quest[0]}')
-        print(f'{quest}')
+        # print(f'{quest[0]}')
+        # print(f'{quest}')
         new_similar_qs.append(quest)
     
     if len(new_similar_qs) == 0:
         new_similar_qs.append([0, "<h2>Results not Found.</h2>", ['\n', "<p>Try rewording your question.</p>", '\n']])
-
+    #just return best match
+    #new_similar_qs = new_similar_qs[0]
     return new_similar_qs
 
 def predictusinganswer(index, nquestion):
@@ -107,7 +106,7 @@ def predictusinganswer(index, nquestion):
     for ele in ans:
         if ele != '\n':
             contents = ele.contents
-            print(f'contents: {contents}')
+            # print(f'contents: {contents}')
             for content in contents:
                 # if content.string == None:
                 #     print(f'content: {content}')
@@ -120,8 +119,8 @@ def predictusinganswer(index, nquestion):
     predict2 = calculate(nquestion)
     
     newprob = calculate(ansstr)
-    print(f'1: {len(predict1)}')
-    print(f'2: {len(predict2)}')
+    # print(f'1: {len(predict1)}')
+    # print(f'2: {len(predict2)}')
 
     for i in range(len(predict1)):
         newprob[i][0] = .2 *predict1[i][0] + (.8 * predict2[i][0])
@@ -144,7 +143,7 @@ for i in range(len(qs)):#//fixqs(q) for q in qs)
 # print('pizza',formatted_qs[12])
 
 # print(predictusinganswer(81, 'what type of documents'))
-print(predictusinganswer(12, 'forgot my password'))
+# print(predictusinganswer(12, 'forgot my password'))
 # print(predictusinganswer(12, 'what''s that'))
 # print(predictusinganswer(21, 'My doctor isn''t in the menu'))
 

@@ -39,14 +39,22 @@
 }
 
 .machine-message{
-    width: 20%;
+    width: 60%;/*20%;*/
     margin-left:3%;
+    padding: 2%;
+    background-color: gray;
+}
+.machine-message1{
+    width: 60%;/*20%;*/
+    margin-left:3%;
+    padding: 2%;
     background-color: gray;
 }
 
 .user-message{
-    width: 20%;
+    width: 60%;
     margin-left: 79%;
+    padding: 2%;
     background-color: lightgray;
 }
 .conversation-wrapper{
