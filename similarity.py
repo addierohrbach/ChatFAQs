@@ -74,6 +74,10 @@ def calculate(question):
 def predict(question):
     similar_qs = calculate(question)
     similar_qs.sort(reverse=True)
+    new_similar_qs = selectbestmatches(similar_qs)
+    return new_similar_qs
+
+def selectbestmatches(similar_qs):
     if similar_qs[0][0] >= 0.9:
         high_similar_qs = []
         for que in similar_qs:
@@ -94,9 +98,8 @@ def predict(question):
     
     if len(new_similar_qs) == 0:
         new_similar_qs.append([0, "<h2>Results not Found.</h2>", ['\n', "<p>Try rewording your question.</p>", '\n']])
-    #just return best match
-    #new_similar_qs = new_similar_qs[0]
     return new_similar_qs
+
 
 def predictusinganswer(index, nquestion):
     
@@ -114,7 +117,8 @@ def predictusinganswer(index, nquestion):
                 #     for i in contents2:
                 #         ansstr += i.string
                 # else:
-                ansstr += content.string
+                if content.string is not None: 
+                    ansstr += content.string
     predict1 = calculate(ansstr)
     predict2 = calculate(nquestion)
     
@@ -128,7 +132,8 @@ def predictusinganswer(index, nquestion):
 
     #newprob = np.multiply(predict1, predict2)
     newprob.sort(reverse=True)
-    return newprob[0:5]
+    newprob = selectbestmatches(newprob)
+    return newprob
 
 
 

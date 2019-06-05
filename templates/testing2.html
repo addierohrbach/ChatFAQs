@@ -36,6 +36,8 @@
                     {% for line in message[1][2] %}
                         {{line | safe}}
                     {% endfor %}
+                {% elif  message[0] == "alt-questions" %}
+                <button type="submit">{{message[1][1] | safe}}</button>
                 {% else %}
                     {{message[1]}}
                 {% endif %}
