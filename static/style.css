@@ -17,7 +17,7 @@
 }
 
 .search {
-    width: 300px;
+    width: 00px;
     font-size: 20px;
     padding: 2px;
 }
@@ -42,7 +42,7 @@
     width: 60%;/*20%;*/
     margin-left:3%;
     padding: 2%;
-    background-color: gray;
+    background-color: grey;
 }
 .machine-message1{
     width: 60%;/*20%;*/
@@ -75,7 +75,7 @@
     position:absolute;
     /* bottom:50px; */
     height:50px!important;
-    
+
 }
 
 .message-form{
@@ -113,4 +113,3 @@ li {
 p {
     display: block;
 }
-
