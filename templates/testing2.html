@@ -32,6 +32,9 @@
         <div class="row">
             <div class="{{ message[0] }}">
                 {% if  message[0] == "machine-message" %}
+                    {% if  message == messages[indexanchor] %}
+                        <a id="anchor"></a>
+                    {% endif %}
                     {{message[1][1] | safe}}
                     {% for line in message[1][2] %}
                         {{line | safe}}
@@ -39,7 +42,12 @@
                 {% elif  message[0] == "alt-questions" %}
                 <button type="submit">{{message[1][1] | safe}}</button>
                 {% else %}
-                    {{message[1]}}
+                    {% if  message == messages[indexanchor] %}
+                        <a id="anchor"></a>
+                        {{message[1]}}
+                    {% else %}    
+                        {{message[1]}}
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

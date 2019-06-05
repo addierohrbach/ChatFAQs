@@ -22,7 +22,7 @@ cities = ["Bratislava",
           "Poprad"]
 
 questions = scraping.questions
-
+indexanchor = 0
 messages = [["machine-message1" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."]]
 messages2 = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."],
             ["user-message", "How do I log in?"]]
@@ -101,12 +101,15 @@ def initialize():
     message_form = MessageForm(request.form)
     if message_form.validate_on_submit:
         return redirect(url_for('sending_message')) 
-    return render_template("testing2.html", form=message_form, messages=messages, placeholder="Begin writing your message here")
+    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
+
 
 @app.route("/sending_message", methods=['GET', 'POST'])
 def sending_message():
     message_form = MessageForm(request.form)
+    global indexanchor
     if message_form.validate_on_submit():
+        indexanchor = len(messages)
         # add user message
         messages.append(["user-message", message_form.message.data])
         similar_qs = None
@@ -130,8 +133,8 @@ def sending_message():
                 messages.append(["alt-questions", similar_qs[i]])
         ## add another class for button/alt questions "alt-questions"
 
-        return redirect(url_for('initialize'))
-    return render_template("testing2.html", form=message_form, messages=messages, placehold="Begin writing your message here")
+        return redirect(url_for('initialize', _anchor='anchor'))
+    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placehold="Begin writing your message here")
 
 
 if __name__ == "__main__":
