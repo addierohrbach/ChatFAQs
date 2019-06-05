@@ -95,30 +95,51 @@ def send_message():
     return redirect(url_for('testing2'))
 """
 
+def click_alt_question():
+    # global indexanchor
+    # indexanchor = len(messages)
+    # messages.append(["user-message", question[1], len(messages)])
+    # similar_qs = None
+    # # handle matching
+    # if len(messages)> 3:
+    #     index = None
+    #     for message in reversed(messages):
+    #         if message[0] == 'machine-message':
+    #             #print(message)
+    #             index = message[1][3]
+    #             break                
+    #     similar_qs = similarity.predictusinganswer(index, message_form.message.data)
+    # else:
+    #     similar_qs = similarity.predict(message_form.message.data)
+    # messages.append(["machine-message", question, len(messages)])
+    # if len(similar_qs)> 1:
+    #     messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilites. You can also ask another question by typing it into the text box at the bottom of the screen."])
+    #     for i in range(1,4):
+    #         if i >= len(similar_qs): break
+    #         messages.append(["alt-questions", similar_qs[i], len(messages)])
+
+    return redirect(url_for('initialize', _anchor='anchor'))
+    # make value = message[2] in testing2?
+    # look up messages[that index] in python. found message = message
+    #  find index of that by message[1][3]
+    # similarity.returnquestion(index)
+    #return render_template("testing2.html", onclick=click_alt_question, form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
+
 #--THIS MIGHT NOT WORK:--
 @app.route("/testing3", methods=['GET', 'POST'])
 def initialize():
     message_form = MessageForm(request.form)
     if message_form.validate_on_submit:
         return redirect(url_for('sending_message')) 
-    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
+    return render_template("testing2.html", onclickfun=click_alt_question, form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
 
 
 @app.route("/sending_message", methods=['GET', 'POST'])
 def sending_message():
     message_form = MessageForm(request.form)
     global indexanchor
-
-
-
     #not sure where this goes but for button
-    # make value = message[2] in testing2?
-    # look up messages[that index] in python. found message = message
-    #  find index of that by message[1][3]
-    # similarity.returnquestion(index)
-
-
-
+    #     
     if message_form.validate_on_submit():
         indexanchor = len(messages)
         # add user message
@@ -130,9 +151,13 @@ def sending_message():
             for message in reversed(messages):
                 if message[0] == 'machine-message':
                     #print(message)
-                    index = message[1][3]
+                    if len(message[1])>3:
+                        index = message[1][3]
+                    else: index = None
                     break                
-            similar_qs = similarity.predictusinganswer(index, message_form.message.data)
+            if index == None:
+                similar_qs = similarity.predict(message_form.message.data)
+            else: similar_qs = similarity.predictusinganswer(index, message_form.message.data)
         else:
             similar_qs = similarity.predict(message_form.message.data)
         messages.append(["machine-message", similar_qs[0], len(messages)])
@@ -143,7 +168,7 @@ def sending_message():
                 messages.append(["alt-questions", similar_qs[i], len(messages)])
 
         return redirect(url_for('initialize', _anchor='anchor'))
-    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placehold="Begin writing your message here")
+    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placehold="Begin writing your message here", onclickfun=click_alt_question)
 
 
 if __name__ == "__main__":
