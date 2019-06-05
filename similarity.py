@@ -76,8 +76,8 @@ def returnquestion(index):
 def predict(question):
     similar_qs = calculate(question)
     similar_qs.sort(reverse=True)
-    new_similar_qs = selectbestmatches(similar_qs)
-    return new_similar_qs
+    #new_similar_qs = selectbestmatches(similar_qs)
+    return similar_qs
 
 def selectbestmatches(similar_qs):
     if similar_qs[0][0] >= 0.9:
@@ -126,7 +126,7 @@ def predictusinganswer(index, nquestion):
         newprob[i][0] = .2 *predict1[i][0] + (.8 * predict2[i][0])
     newprob.pop(index)
     newprob.sort(reverse=True)
-    newprob = selectbestmatches(newprob)
+    #newprob = selectbestmatches(newprob)
     return newprob
 
 
