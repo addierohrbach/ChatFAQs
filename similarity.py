@@ -10,7 +10,9 @@ nlp = spacy.load('en_core_web_md')
 
 qs = scraping.questions
 
-referenceterms = ['they', 'it', 'them', 'this', 'that', 'these', 'those', 'the former', 'the latter', 'who', 'which', 'that', 'one', 'ones', 'such']
+
+#common reference terms to search for
+referenceterms = ['I', 'you', 'they', 'it', 'them', 'the', 'this', 'that', 'these', 'those', 'who', 'which', 'that', 'one', 'ones', 'such']
 
 def fixqs(questions):
     return "".join([str(x) for x in questions.contents])
