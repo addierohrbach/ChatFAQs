@@ -70,6 +70,8 @@ def calculate(question):
         similar_qs.append([similarity, qs[i], scraping.answers[i], i])  
     return similar_qs
 
+def returnquestion(index):
+    return qs[index]
 
 def predict(question):
     similar_qs = calculate(question)
@@ -92,8 +94,6 @@ def selectbestmatches(similar_qs):
     for quest in similar_qs:
         if quest[0] <= last_sim or quest[0] < .5:
             break
-        # print(f'{quest[0]}')
-        # print(f'{quest}')
         new_similar_qs.append(quest)
     
     if len(new_similar_qs) == 0:
@@ -101,9 +101,7 @@ def selectbestmatches(similar_qs):
     return new_similar_qs
 
 
-def predictusinganswer(index, nquestion):
-    
-    
+def predictusinganswer(index, nquestion):  
     ans = scraping.answers[index]
     ansstr = ''
     for ele in ans:
@@ -123,21 +121,17 @@ def predictusinganswer(index, nquestion):
     predict2 = calculate(nquestion)
     
     newprob = calculate(ansstr)
-    # print(f'1: {len(predict1)}')
-    # print(f'2: {len(predict2)}')
 
     for i in range(len(predict1)):
         newprob[i][0] = .2 *predict1[i][0] + (.8 * predict2[i][0])
     newprob.pop(index)
-
-    #newprob = np.multiply(predict1, predict2)
     newprob.sort(reverse=True)
     newprob = selectbestmatches(newprob)
     return newprob
 
 
 
-formatted_qs = [fixqs(q) for q in qs]
+# formatted_qs = [fixqs(q) for q in qs]
 '''
 for i in range(len(qs)):#//fixqs(q) for q in qs)        
     # if formatted_qs[i] == "I already have the MyChart app on my phone - can I continue to use the MyChart app instead of MyNM?":

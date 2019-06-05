@@ -23,7 +23,7 @@ cities = ["Bratislava",
 
 questions = scraping.questions
 indexanchor = 0
-messages = [["machine-message1" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."]]
+messages = [["machine-message1" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen.", 0]]
 messages2 = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."],
             ["user-message", "How do I log in?"]]
 
@@ -108,30 +108,39 @@ def initialize():
 def sending_message():
     message_form = MessageForm(request.form)
     global indexanchor
+
+
+
+    #not sure where this goes but for button
+    # make value = message[2] in testing2?
+    # look up messages[that index] in python. found message = message
+    #  find index of that by message[1][3]
+    # similarity.returnquestion(index)
+
+
+
     if message_form.validate_on_submit():
         indexanchor = len(messages)
         # add user message
-        messages.append(["user-message", message_form.message.data])
+        messages.append(["user-message", message_form.message.data, len(messages)])
         similar_qs = None
         # handle matching
         if len(messages)> 3:
             index = None
             for message in reversed(messages):
                 if message[0] == 'machine-message':
-                    print(message)
+                    #print(message)
                     index = message[1][3]
-                    break
-                
+                    break                
             similar_qs = similarity.predictusinganswer(index, message_form.message.data)
         else:
             similar_qs = similarity.predict(message_form.message.data)
-        messages.append(["machine-message", similar_qs[0]])
+        messages.append(["machine-message", similar_qs[0], len(messages)])
         if len(similar_qs)> 1:
             messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilites. You can also ask another question by typing it into the text box at the bottom of the screen."])
             for i in range(1,4):
                 if i >= len(similar_qs): break
-                messages.append(["alt-questions", similar_qs[i]])
-        ## add another class for button/alt questions "alt-questions"
+                messages.append(["alt-questions", similar_qs[i], len(messages)])
 
         return redirect(url_for('initialize', _anchor='anchor'))
     return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placehold="Begin writing your message here")
