@@ -11,15 +11,7 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 app.secret_key = 'aoijad.asdofij230f-ds'
 
-cities = ["Bratislava",
-          "Banská Bystrica",
-          "Prešov",
-          "Považská Bystrica",
-          "Žilina",
-          "Košice",
-          "Ružomberok",
-          "Zvolen",
-          "Poprad"]
+
 
 questions = scraping.questions
 indexanchor = 0
@@ -60,40 +52,7 @@ def index():
     return render_template("search.html", form=form)
 
 
-@app.route("/_autocomplete", methods=['GET'])
-def autocomp():
-    return Response(json.dumps(formatted_qs), mimetype='application/json')
 
-@app.route("/testing", methods=['GET'])
-def dropdown():
-    colors = ['Red', 'Blue', 'Black', 'Orange']
-    return render_template("testing.html", colors = colors)
-"""
-@app.route("/testing2", methods=['GET','POST'])
-def testing2():
-    form = MessageForm(request.form)
-    # print(f'starting')
-    if form.validate_on_submit():
-    #     messages.append(["user-message", form.message.data])
-    #     print(f'------1-------')
-    #     print(f'{form.message.data}')
-    #     return render_template("testing2.html", form=form, messages=messages, placeholder="Begin writing your message here")
-
-        return redirect(url_for('send_message'))
-    return render_template("testing2.html", form=form, messages=messages,  placeholder="Begin writing your message here")
-
-@app.route("/send_message", methods=['GET','POST'])
-def send_message():
-    form = MessageForm(request.form)
-    print(f'starting')
-    if form.validate_on_submit():
-        messages.append(["user-message", form.message.data])
-        print(f'------1-------')
-        print(f'{form.message.data}')
-        return render_template("testing2.html", form=form, messages=messages, placeholder="Begin writing your message here")
-    # return render_template("testing2.html", form=form, messages=messages,  placeholder="Begin writing your message here")
-    return redirect(url_for('testing2'))
-"""
 
 def click_alt_question():
     # global indexanchor

@@ -40,7 +40,11 @@
                         {{line | safe}}
                     {% endfor %}
                 {% elif  message[0] == "alt-questions" %}
-                    <button type="submit"  name="altquestion" onclick="{{ onclickfun() }}">{{message[1][1] | safe}}</button>
+                    {{message[1][1] | safe}}
+                    {% for line in message[1][2] %}
+                        {{line | safe}}
+                    {% endfor %}
+                    <!--<button type="submit"  name="altquestion" onclick="{{ onclickfun() }}">{{message[1][1] | safe}}</button>-->
                 {% else %}
                     {% if  message == messages[indexanchor] %}
                         <a id="anchor"></a>
