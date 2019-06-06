@@ -40,7 +40,7 @@
                         {{line | safe}}
                     {% endfor %}
                 {% elif  message[0] == "alt-questions" %}
-                <div class="accordion">{{message[1][1] | safe}}<i class="fas fa-chevron-right"></i></div>
+                <div class="accordion">{{message[1][1] | safe}}<span class="chevron">&rsaquo;</span></div>
                     <div class="panel">
                     {% for line in message[1][2] %}
                         {{line | safe}}

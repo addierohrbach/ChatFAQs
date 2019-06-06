@@ -110,7 +110,7 @@ def sending_message():
             similar_qs = similarity.predict(message_form.message.data)
         messages.append(["machine-message", similar_qs[0], len(messages)])
         if len(similar_qs)> 1:
-            messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilites. You can also ask another question by typing it into the text box at the bottom of the screen."])
+            messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilities. Please click on the question to see the answer. You can also ask another question by typing it into the text box at the bottom of the screen."])
             for i in range(1,4):
                 if i >= len(similar_qs): break
                 messages.append(["alt-questions", similar_qs[i], len(messages)])

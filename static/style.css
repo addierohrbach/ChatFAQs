@@ -89,6 +89,11 @@ li {
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+    display: inline-block;
+}
+
+.h2, h2 {
+    display: inline-block;
 }
 
 /* left this in case you want to add the hover or click color*/
@@ -166,4 +171,9 @@ li {
     border-radius: 0.4rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.chevron {
+    float: right;
+    font-size: 22px;
 }
