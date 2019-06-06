@@ -26,9 +26,6 @@ def fixqs(questions):
 formatted_qs = [fixqs(q) for q in questions]
 
 
-class SearchForm(Form):
-    autocomp = TextField('Please type your question', id='question_autocomplete')
-
 
 class MessageForm(FlaskForm):
     message = StringField('Message', id='user_message', validators=[DataRequired()])
@@ -44,14 +41,6 @@ def view_answer_similarity():
         similar_qs = similarity.predict(form.question.data)
         return render_template("layout2.html", form=form, similar_qs=similar_qs)
     return render_template("layout2.html", form=form, answer="", matched_q="")
-
-
-@app.route("/", methods=['GET', 'POST'])
-def index():
-    form = SearchForm(request.form)
-    return render_template("search.html", form=form)
-
-
 
 
 def click_alt_question():

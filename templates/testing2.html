@@ -40,10 +40,12 @@
                         {{line | safe}}
                     {% endfor %}
                 {% elif  message[0] == "alt-questions" %}
-                    {{message[1][1] | safe}}
+                <div class="accordion">{{message[1][1] | safe}}<i class="fas fa-chevron-right"></i></div>
+                    <div class="panel">
                     {% for line in message[1][2] %}
                         {{line | safe}}
                     {% endfor %}
+                    </div>
                     <!--<button type="submit"  name="altquestion" onclick="{{ onclickfun() }}">{{message[1][1] | safe}}</button>-->
                 {% else %}
                     {% if  message == messages[indexanchor] %}
@@ -72,10 +74,26 @@
                 {{ field(placeholder=placeholder) }}
             </div>
             {% endfor %}
-            <button type="submit" class="submit">Submit</button>
+            <button type="submit" class="submit">Send</button>
 
         </form>
     </div>
 
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      })
+    }
+</script>
 
 </body>

@@ -42,40 +42,40 @@
     width: 60%;/*20%;*/
     margin-left:3%;
     padding: 2%;
-    background-color: grey;
+    background-color: lightgray;
+    border-radius: 10px
 }
 .machine-message1{
     width: 60%;/*20%;*/
     margin-left:3%;
     padding: 2%;
-    background-color: gray;
+    background-color: lightgray;
+    border-radius: 10px;
 }
 
 .alt-questions{
     width: 60%;/*20%;*/
     margin-left:3%;
     padding: 2%;
-    background-color: gray;
+    background-color: lightgray;
 }
 
 .user-message{
     width: 60%;
     margin-left: 79%;
     padding: 2%;
-    background-color: lightgray;
+    background-color: dodgerblue;
+    border-radius: 10px;
 }
 .conversation-wrapper{
     height:600px!important;
     overflow-y:scroll;
     overflow-x:hidden;
-
 }
 
 .input-wrapper{
     position:absolute;
-    /* bottom:50px; */
-    height:50px!important;
-
+    bottom:50px;
 }
 
 .message-form{
@@ -112,4 +112,37 @@ li {
 
 p {
     display: block;
+}
+
+/* -------------- ACCORDION STYLING ---------------- */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
