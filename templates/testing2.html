@@ -9,6 +9,7 @@
 
 <body>
 
+
     <!-- <div class="row">
         <div class="machine-message">
             <p>Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen.</p>
@@ -30,7 +31,30 @@
         {% for message in messages %}
         <div class="row">
             <div class="{{ message[0] }}">
-                {{message[1]}}
+                {% if  message[0] == "machine-message" %}
+                    {% if  message == messages[indexanchor] %}
+                        <a id="anchor"></a>
+                    {% endif %}
+                    {{message[1][1] | safe}}
+                    {% for line in message[1][2] %}
+                        {{line | safe}}
+                    {% endfor %}
+                {% elif  message[0] == "alt-questions" %}
+                <div class="accordion">{{message[1][1] | safe}}<i class="fas fa-chevron-right"></i></div>
+                    <div class="panel">
+                    {% for line in message[1][2] %}
+                        {{line | safe}}
+                    {% endfor %}
+                    </div>
+                    <!--<button type="submit"  name="altquestion" onclick="{{ onclickfun() }}">{{message[1][1] | safe}}</button>-->
+                {% else %}
+                    {% if  message == messages[indexanchor] %}
+                        <a id="anchor"></a>
+                        {{message[1]}}
+                    {% else %}    
+                        {{message[1]}}
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -50,10 +74,26 @@
                 {{ field(placeholder=placeholder) }}
             </div>
             {% endfor %}
-            <button type="submit" class="submit">Submit</button>
+            <button type="submit" class="submit">Send</button>
 
         </form>
     </div>
 
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      })
+    }
+</script>
 
 </body>

@@ -11,19 +11,11 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 app.secret_key = 'aoijad.asdofij230f-ds'
 
-cities = ["Bratislava",
-          "Banská Bystrica",
-          "Prešov",
-          "Považská Bystrica",
-          "Žilina",
-          "Košice",
-          "Ružomberok",
-          "Zvolen",
-          "Poprad"]
+
 
 questions = scraping.questions
-
-messages = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."]]
+indexanchor = 0
+messages = [["machine-message1" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen.", 0]]
 messages2 = [["machine-message" ,"Welcome to ChatFAQs! Please ask your question using the text box at the bottom of the screen."],
             ["user-message", "How do I log in?"]]
 
@@ -33,9 +25,6 @@ def fixqs(questions):
 
 formatted_qs = [fixqs(q) for q in questions]
 
-
-class SearchForm(Form):
-    autocomp = TextField('Please type your question', id='question_autocomplete')
 
 
 class MessageForm(FlaskForm):
@@ -54,46 +43,35 @@ def view_answer_similarity():
     return render_template("layout2.html", form=form, answer="", matched_q="")
 
 
-@app.route("/", methods=['GET', 'POST'])
-def index():
-    form = SearchForm(request.form)
-    return render_template("search.html", form=form)
+def click_alt_question():
+    # global indexanchor
+    # indexanchor = len(messages)
+    # messages.append(["user-message", question[1], len(messages)])
+    # similar_qs = None
+    # # handle matching
+    # if len(messages)> 3:
+    #     index = None
+    #     for message in reversed(messages):
+    #         if message[0] == 'machine-message':
+    #             #print(message)
+    #             index = message[1][3]
+    #             break                
+    #     similar_qs = similarity.predictusinganswer(index, message_form.message.data)
+    # else:
+    #     similar_qs = similarity.predict(message_form.message.data)
+    # messages.append(["machine-message", question, len(messages)])
+    # if len(similar_qs)> 1:
+    #     messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilites. You can also ask another question by typing it into the text box at the bottom of the screen."])
+    #     for i in range(1,4):
+    #         if i >= len(similar_qs): break
+    #         messages.append(["alt-questions", similar_qs[i], len(messages)])
 
-
-@app.route("/_autocomplete", methods=['GET'])
-def autocomp():
-    return Response(json.dumps(formatted_qs), mimetype='application/json')
-
-@app.route("/testing", methods=['GET'])
-def dropdown():
-    colors = ['Red', 'Blue', 'Black', 'Orange']
-    return render_template("testing.html", colors = colors)
-"""
-@app.route("/testing2", methods=['GET','POST'])
-def testing2():
-    form = MessageForm(request.form)
-    # print(f'starting')
-    if form.validate_on_submit():
-    #     messages.append(["user-message", form.message.data])
-    #     print(f'------1-------')
-    #     print(f'{form.message.data}')
-    #     return render_template("testing2.html", form=form, messages=messages, placeholder="Begin writing your message here")
-
-        return redirect(url_for('send_message'))
-    return render_template("testing2.html", form=form, messages=messages,  placeholder="Begin writing your message here")
-
-@app.route("/send_message", methods=['GET','POST'])
-def send_message():
-    form = MessageForm(request.form)
-    print(f'starting')
-    if form.validate_on_submit():
-        messages.append(["user-message", form.message.data])
-        print(f'------1-------')
-        print(f'{form.message.data}')
-        return render_template("testing2.html", form=form, messages=messages, placeholder="Begin writing your message here")
-    # return render_template("testing2.html", form=form, messages=messages,  placeholder="Begin writing your message here")
-    return redirect(url_for('testing2'))
-"""
+    return redirect(url_for('initialize', _anchor='anchor'))
+    # make value = message[2] in testing2?
+    # look up messages[that index] in python. found message = message
+    #  find index of that by message[1][3]
+    # similarity.returnquestion(index)
+    #return render_template("testing2.html", onclick=click_alt_question, form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
 
 #--THIS MIGHT NOT WORK:--
 @app.route("/testing3", methods=['GET', 'POST'])
@@ -101,20 +79,44 @@ def initialize():
     message_form = MessageForm(request.form)
     if message_form.validate_on_submit:
         return redirect(url_for('sending_message')) 
-    return render_template("testing2.html", form=message_form, messages=messages, placeholder="Begin writing your message here")
+    return render_template("testing2.html", onclickfun=click_alt_question, form=message_form, messages=messages, indexanchor = indexanchor, placeholder="Begin writing your message here")
+
 
 @app.route("/sending_message", methods=['GET', 'POST'])
 def sending_message():
     message_form = MessageForm(request.form)
+    global indexanchor
+    #not sure where this goes but for button
+    #     
     if message_form.validate_on_submit():
+        indexanchor = len(messages)
         # add user message
-        messages.append(["user-message", message_form.message.data])
-
+        messages.append(["user-message", message_form.message.data, len(messages)])
+        similar_qs = None
         # handle matching
-        messages.append(["machine-message", "This is the Machine's response to your message."])
+        if len(messages)> 3:
+            index = None
+            for message in reversed(messages):
+                if message[0] == 'machine-message':
+                    #print(message)
+                    if len(message[1])>3:
+                        index = message[1][3]
+                    else: index = None
+                    break                
+            if index == None:
+                similar_qs = similarity.predict(message_form.message.data)
+            else: similar_qs = similarity.predictusinganswer(index, message_form.message.data)
+        else:
+            similar_qs = similarity.predict(message_form.message.data)
+        messages.append(["machine-message", similar_qs[0], len(messages)])
+        if len(similar_qs)> 1:
+            messages.append(["machine-message1" ,"If this does not answer your question here are some other possibilites. You can also ask another question by typing it into the text box at the bottom of the screen."])
+            for i in range(1,4):
+                if i >= len(similar_qs): break
+                messages.append(["alt-questions", similar_qs[i], len(messages)])
 
-        return redirect(url_for('initialize'))
-    return render_template("testing2.html", form=message_form, messages=messages, placehold="Begin writing your message here")
+        return redirect(url_for('initialize', _anchor='anchor'))
+    return render_template("testing2.html", form=message_form, messages=messages, indexanchor = indexanchor, placehold="Begin writing your message here", onclickfun=click_alt_question)
 
 
 if __name__ == "__main__":
