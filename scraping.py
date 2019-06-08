@@ -1,8 +1,11 @@
 # import libraries
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
+import csv
+import re
 
-# file = codecs.open("data/original_html.html", "r")
+
+# MAKE SURE TO CHANGE THIS PATH
 file = open("data/original_html.html", encoding="utf8")
 
 # parse the html using beautiful soup
@@ -16,6 +19,7 @@ questions.pop()
 answers = []
 
 for i in range(len(questions)):
+
     html_section = questions[i]
     id_name = questions[i].get('id')
 
@@ -28,29 +32,33 @@ for i in range(len(questions)):
         answer.append(sib)
         sib = sib.next_sibling
 
+    # delete the "Return to Top" button and html separator
     answer.pop()
     answer.pop()
+
+    # update answer array
     answers.append(answer)
 
-# print(f'{questions}')
 
-#----debugging-----
-# print(f'answers: {answers}')
-# print(f'answers len: {len(answers)}')
-# print(f'questions len: {len(heading_box)}')
 
-# # Open spreadsheet for reading
-# wb = load_workbook(filename='data/faq_spreadsheet.xlsx')
-# # Get the current active sheet
-# ws = wb.get_active_sheet()
-#
-# # Load questions into the first column
-# for i in range(len(heading_box)):
-#     ws['A', i + 1] = heading_box[i]
-#
-# # Load answers into the second column
-# for j in range(len(answers)):
-#     ws['B', j + 1] = answers[j]
-#
-# # Save workbook
-# wb.save('data/faq_spreadsheet.xlsx')
+# write to csv, we never used this
+with open('data/qa.csv', 'w') as csvfile:
+    writer = csv.writer(csvfile, delimiter=' ')
+    for i in range(len(questions)):
+        writer.writerow((questions[i], answers[i]))
+    
+csvfile.close()
+
+# removing html tags, we never used this
+with open('data/qa2.csv', 'w') as csvfile:
+    writer = csv.writer(csvfile, delimiter=' ')
+    for i in range(len(questions)):
+        # cleantext = BeautifulSoup(answers[i], "lxml").text
+
+        cleanr = re.compile('<.*?>')
+        cleantext = re.sub(cleanr, '', f'{answers[i]}')
+        writer.writerow((questions[i], cleantext))
+    
+csvfile.close()
+
+
